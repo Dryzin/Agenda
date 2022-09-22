@@ -5,5 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-label></ion-label>
+  <ion-list>
+    <ion-item *ngFor="let todosContatos of todosContatos" routerLink="/contatos-detalhes/{{todosContatos.id}}">
+      <ion-label>{{todosContatos.nome}}</ion-label>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" edge="true">
+    <ion-fab-button color="dark" routerLink="/contatos-detalhes/-1">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+
+<ion-button shape="round" fill="outline" color="dark" routerLink="/home">Voltar</ion-button>

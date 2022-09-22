@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf=!modoEdicao>
+  Nome: {{todosContatos.nome}}
+  </ion-item>
+
+  <ion-item *ngIf=!modoEdicao>
+  Telefone: {{todosContatos.tel}}
+  </ion-item>
+  
+  <ion-button *ngIf="!modoEdicao" (click)="iniciarEdicao()" shape="round" fill="outline" color="dark">Alterar</ion-button>
+
+</ion-content>
+
+<ion-fab horizontal="end">
+  <ion-fab-button color="dark" (click)="deletar()" routerLink="/contatos">
+    <ion-icon name="trash"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()">
+  <ion-label>Nome</ion-label>
+  <ion-input [(ngModel)]="todosContatos.nome" name="nome"></ion-input>
+  <ion-label>Telefone</ion-label>
+  <ion-input [(ngModel)]="todosContatos.tel" name="Telefone"></ion-input>
+
+  <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
+</form>
+
+<ion-button shape="round" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
