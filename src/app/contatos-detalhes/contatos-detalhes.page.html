@@ -31,12 +31,19 @@
 
 
 <form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()" id="forms">
+
   <ion-label>Nome</ion-label>
-  <ion-input [(ngModel)]="todosContatos.nome" name="nome"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.nome" name="nome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+
+
+
   <ion-label>Sobrenome</ion-label>
-  <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+
   <ion-label>Telefone</ion-label>
   <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
+
+
   <ion-label>Email</ion-label>
   <ion-input [(ngModel)]="todosContatos.email" name="email"></ion-input>
 
