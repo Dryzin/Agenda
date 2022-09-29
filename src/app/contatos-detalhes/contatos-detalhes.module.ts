@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ContatosDetalhesPageRoutingModule } from './contatos-detalhes-routing.module';
 
 import { ContatosDetalhesPage } from './contatos-detalhes.page';
+import { SimpleMaskModule } from 'ngx-ion-simple-mask';
 
 @NgModule({
   imports: [
+    SimpleMaskModule,
     CommonModule,
     FormsModule,
     IonicModule,

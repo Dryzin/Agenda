@@ -7,7 +7,7 @@
 <ion-content>
   
   <div id="img-desc">
-    <img src="https://o.remove.bg/downloads/449cff7a-5d54-4856-836e-384d2c91a7af/contato-png-removebg-preview-removebg-preview.png">
+    <img src="https://www.freeiconspng.com/uploads/person-icon-blue-18.png">
   </div>
 
   <ion-item *ngIf=!modoEdicao id="nome">
@@ -36,7 +36,7 @@
   <ion-label>Sobrenome</ion-label>
   <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome"></ion-input>
   <ion-label>Telefone</ion-label>
-  <ion-input [(ngModel)]="todosContatos.tel" name="tel"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
   <ion-label>Email</ion-label>
   <ion-input [(ngModel)]="todosContatos.email" name="email"></ion-input>
 
