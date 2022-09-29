@@ -1,12 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalhes</ion-title>
+    <ion-title>Detalhes Contato</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngIf=!modoEdicao>
-  Nome: {{todosContatos.nome}}
+  
+  <div id="img-desc">
+    <img src="https://o.remove.bg/downloads/449cff7a-5d54-4856-836e-384d2c91a7af/contato-png-removebg-preview-removebg-preview.png">
+  </div>
+
+  <ion-item *ngIf=!modoEdicao id="nome">
+  {{todosContatos.nome}}
   </ion-item>
 
   <ion-item *ngIf=!modoEdicao>
@@ -17,17 +22,23 @@
 
 </ion-content>
 
+
 <ion-fab horizontal="end">
   <ion-fab-button color="dark" (click)="deletar()" routerLink="/contatos">
     <ion-icon name="trash"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
-<form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()">
+
+<form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()" id="forms">
   <ion-label>Nome</ion-label>
   <ion-input [(ngModel)]="todosContatos.nome" name="nome"></ion-input>
+  <ion-label>Sobrenome</ion-label>
+  <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome"></ion-input>
   <ion-label>Telefone</ion-label>
-  <ion-input [(ngModel)]="todosContatos.tel" name="Telefone"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.tel" name="tel"></ion-input>
+  <ion-label>Email</ion-label>
+  <ion-input [(ngModel)]="todosContatos.email" name="email"></ion-input>
 
   <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
 </form>
