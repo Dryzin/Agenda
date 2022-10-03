@@ -17,6 +17,10 @@
   <ion-item *ngIf=!modoEdicao>
   Telefone: {{todosContatos.tel}}
   </ion-item>
+
+  <ion-item *ngIf=!modoEdicao>
+    Tipo Telefone: {{todosContatos.tipo}}
+    </ion-item>
   
   <ion-button *ngIf="!modoEdicao" (click)="iniciarEdicao()" shape="round" fill="outline" color="dark">Alterar</ion-button>
 
@@ -40,12 +44,21 @@
   <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
 
   <ion-label>Telefone</ion-label>
-  <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
-
+  
   <ion-item>
+    <ion-select placeholder="Tipo de Telefone" [(ngModel)]="todosContatos.tipo" [ngModelOptions]="{standalone: true}">
+      <ion-select-option value="Celular">Celular</ion-select-option>
+      <ion-select-option value="Comercial">Comercial</ion-select-option>
+      <ion-select-option value="Casa">Casa</ion-select-option>
+    </ion-select>
+    <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
+  </ion-item>
+
+  
+
   <ion-label>Email</ion-label>
   <ion-input [(ngModel)]="todosContatos.email"  name="email" ></ion-input>
-  </ion-item>
+  
 
   <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
 </form>

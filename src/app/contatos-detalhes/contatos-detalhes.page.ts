@@ -12,13 +12,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class ContatosDetalhesPage implements OnInit {
 
+  handlerMessage = '';
+  roleMessage = '';
+
+
   public todosContatos : any
   public modoEdicao = false
 
   clientForm : FormGroup
-  private alertController: AlertController
 
-  constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router,private alertController: AlertController) { }
 
   ngOnInit() {
     
@@ -55,23 +58,24 @@ export class ContatosDetalhesPage implements OnInit {
 
 async presentAlert() {
   const alert = await this.alertController.create({
-  header: 'Tem certeza?',
-  cssClass: 'custom-alert',
-  buttons: [
-  {
-  text: 'Não',
-  cssClass: 'alert-button-cancel',
-  },
-  {
-  text: 'sim',
-  cssClass: 'alert-button-confirm',
-  handler: () => {
-  this.deletar();
-  
+    header: 'Alert!',
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: () => {
+          this.handlerMessage = 'Alert canceled';
         },
       },
-      ],
+      {
+        text: 'OK',
+        handler: () => {this.deletar();},
+      },
+    ],
   });
-  }
-  }
+
+  await alert.present();
+
+}
+}
+
 

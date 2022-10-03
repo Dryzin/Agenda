@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class ServiceService {
 
   private contatos_phone = [
-    {id: 1, nome:'Pit', sobrenome:'Bull', tel:"(35)9999-9999", email:'pitbulldofunk.com'},
-    {id: 2, nome:'Coreanin', sobrenome:'Cavalcant', tel:"(35)9999-9999", email:'freguesia@gmail.com'},
-    {id: 3, nome:'K1 do Jordan', sobrenome:'Paz', tel:"(11)9999-9999", email:'shuvin@gmail.com'},
-    {id: 4, nome:'Jat', sobrenome:'Reis',tel:"(11)9948-1893", email:'lucaisreis22@gmail.com'}
+    {id: 1, nome:'Pit', sobrenome:'Bull', tel:"(35)9999-9999", email:'pitbulldofunk.com',tipo:'Celular'},
+    {id: 2, nome:'Coreanin', sobrenome:'Cavalcant', tel:"(35)9999-9999", email:'freguesia@gmail.com',tipo:'Celular'},
+    {id: 3, nome:'K1 do Jordan', sobrenome:'Paz', tel:"(11)9999-9999", email:'shuvin@gmail.com',tipo:'Celular'},
+    {id: 4, nome:'Jat', sobrenome:'Reis',tel:"(11)9948-1893", email:'lucaisreis22@gmail.com',tipo:'Celular'}
   ]
 
   constructor() { }
