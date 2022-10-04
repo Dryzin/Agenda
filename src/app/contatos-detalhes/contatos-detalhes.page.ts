@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ServiceService } from '../services/service.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { FormBuilder,FormGroup, Validators  } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -19,9 +21,20 @@ export class ContatosDetalhesPage implements OnInit {
   public todosContatos : any
   public modoEdicao = false
 
-  clientForm : FormGroup
+  cliente = {}
+  formulario: FormGroup;
+
 
   constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router,private alertController: AlertController) { }
+
+  enviar() {
+    if (this.formulario.invalid || this.formulario.pending){
+      return
+  }else{
+    console.log(this.cliente)
+    this.encerrarEdicao()
+  }
+}
 
   ngOnInit() {
     
@@ -32,6 +45,15 @@ export class ContatosDetalhesPage implements OnInit {
       this.todosContatos = {id, nome: "", valor: 0.0}
       this.modoEdicao = true
     }
+
+      this.formulario = this.formBuilder.group({
+        nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+        sobrenome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+        tipo: [''],
+        tel: ['', Validators.compose([Validators.required, Validators.minLength(13), Validators.maxLength(16)])],
+        email: ['', Validators.compose([Validators.required, Validators.email])]
+      })
+    
   }
 
   deletar(){

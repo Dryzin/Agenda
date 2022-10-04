@@ -20,7 +20,7 @@
 
   <ion-item *ngIf=!modoEdicao>
     Tipo Telefone: {{todosContatos.tipo}}
-    </ion-item>
+  </ion-item>
   
   <ion-button *ngIf="!modoEdicao" (click)="iniciarEdicao()" shape="round" fill="outline" color="dark">Alterar</ion-button>
 
@@ -28,20 +28,24 @@
 
 
 <ion-fab horizontal="end">
-  <ion-fab-button color="dark" (click)="presentAlert()">
+  <ion-fab-button color="dark" *ngIf="!modoEdicao" (click)="presentAlert()">
     <ion-icon name="trash"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
+<form #form="ngForm" *ngIf="modoEdicao" (ngSubmit)="enviar()" [formGroup]="formulario" id="forms">
 
-<form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()" id="forms">
-
-  
+  <ion-item>
   <ion-label>Nome</ion-label>
-  <ion-input [(ngModel)]="todosContatos.nome" name="nome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.nome" formControlName="nome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+  </ion-item>
+  <small *ngIf="(formulario.get('nome').errors?.required || formulario.get('nome').errors?.minlength || formulario.get('nome').errors?.maxlength) && form.submitted" >Nome invalio, informe um nome de 3 a 50 caracteres</small>
 
+  <ion-item>
   <ion-label>Sobrenome</ion-label>
-  <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+  <ion-input [(ngModel)]="todosContatos.sobrenome" formControlName="sobrenome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+  </ion-item>
+  <small *ngIf="(formulario.get('sobrenome').errors?.required || formulario.get('sobrenome').errors?.minlength || formulario.get('sobrenome').errors?.maxlength) && form.submitted" >sobrenome invalio, informe um sobrenome de 3 a 50 caracteres</small>
 
   <ion-label>Telefone</ion-label>
   
@@ -51,16 +55,16 @@
       <ion-select-option value="Comercial">Comercial</ion-select-option>
       <ion-select-option value="Casa">Casa</ion-select-option>
     </ion-select>
-    <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
+    <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" formControlName="tel"></ion-input>
   </ion-item>
-
   
-
+  <ion-item>
   <ion-label>Email</ion-label>
-  <ion-input [(ngModel)]="todosContatos.email"  name="email" ></ion-input>
-  
+  <ion-input [(ngModel)]="todosContatos.email" formControlName="email" ></ion-input>
+  </ion-item>
+  <small *ngIf="(formulario.get('email').errors?.required || formulario.get('email').errors?.email) && form.submitted" >Email invalido, Informa um email@teste </small>
 
   <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
 </form>
 
-<ion-button shape="round" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
+<ion-button shape="round" *ngIf="!modoEdicao" type="submit" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
