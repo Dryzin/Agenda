@@ -35,6 +35,8 @@
 
 <form #form="ngForm" *ngIf="modoEdicao" (ngSubmit)="enviar()" [formGroup]="formulario" id="forms">
 
+  <ion-label>Contato</ion-label>
+
   <ion-item>
   <ion-label>Nome</ion-label>
   <ion-input [(ngModel)]="todosContatos.nome" formControlName="nome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
@@ -66,5 +68,7 @@
 
   <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
 </form>
+
+
 
 <ion-button shape="round" *ngIf="!modoEdicao" type="submit" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
