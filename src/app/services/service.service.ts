@@ -18,6 +18,15 @@ export class ServiceService {
 
   constructor( private storage : Storage ) { }
 
+  async listarTodos(){
+    let arrayPessoa: Pessoa [] = [];
+
+    await this.storage.forEach((value: string) =>
+      {const pessoa: Pessoa = JSON.parse(value); arrayPessoa.push(pessoa)})
+
+    return arrayPessoa;
+  }
+
   inserir(argumento: Pessoa){
 
     argumento.id = Guid.create()
