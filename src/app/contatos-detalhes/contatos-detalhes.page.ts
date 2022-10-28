@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Guid } from 'guid-typescript';
+import { Pessoa } from '../models/pessoa.model';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ServiceService } from '../services/service.service';
-
 import { FormBuilder,FormGroup, Validators  } from '@angular/forms';
-
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -17,24 +18,29 @@ export class ContatosDetalhesPage implements OnInit {
   handlerMessage = '';
   roleMessage = '';
 
+  private pessoa : Pessoa
+  public pessoaForm : FormGroup
+  public arrayPessoa: any
 
   public todosContatos : any
   public modoEdicao = false
 
   cliente = {}
-  formulario: FormGroup;
 
 
   constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router,private alertController: AlertController) { }
 
   enviar() {
-    if (this.formulario.invalid || this.formulario.pending){
+    if (this.pessoaForm.invalid || this.pessoaForm.pending){
       return
-  }else{
-    console.log(this.cliente)
-    this.encerrarEdicao()
   }
+    else{
+      this.dados.inserir(this.pessoaForm.value)
+      console.log(this.cliente)
+      this.encerrarEdicao()
+    }
 }
+
 
   ngOnInit() {
     
@@ -46,12 +52,15 @@ export class ContatosDetalhesPage implements OnInit {
       this.modoEdicao = true
     }
 
-      this.formulario = this.formBuilder.group({
-        nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-        sobrenome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-        tipo: [''],
-        tel: ['', Validators.compose([Validators.required, Validators.minLength(13), Validators.maxLength(16)])],
-        email: ['', Validators.compose([Validators.required, Validators.email])]
+      this.pessoa = {id: Guid.createEmpty(), nome:"", sobrenome:"", tel:"", email:"", tipo:""}
+
+      this.pessoaForm = this.formBuilder.group({
+        id : [this.pessoa.id],
+        nome: [this.pessoa.nome, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+        sobrenome: [this.pessoa.sobrenome, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+        tipo: [this.pessoa.tipo],
+        tel: [this.pessoa.tel, Validators.compose([Validators.required, Validators.minLength(13), Validators.maxLength(16)])],
+        email: [this.pessoa.email, Validators.compose([Validators.required, Validators.email])]
       })
     
   }

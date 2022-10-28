@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Pessoa } from '../models/pessoa.model';
+import { Guid} from 'guid-typescript';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,14 @@ export class ServiceService {
     {id: 4, nome:'Jat', sobrenome:'Reis',tel:"(11)9948-1893", email:'lucaisreis22@gmail.com',tipo:'Celular'}
   ]
 
-  constructor() { }
+  constructor( private storage : Storage ) { }
+
+  inserir(argumento: Pessoa){
+
+    argumento.id = Guid.create()
+
+    this.storage.set(argumento.id.toString(), JSON.stringify(argumento))
+  }
 
   enviarTodosDados(){
     return this.contatos_phone
