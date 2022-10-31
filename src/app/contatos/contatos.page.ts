@@ -11,6 +11,8 @@ import { ServiceService } from '../services/service.service';
 export class ContatosPage implements OnInit {
 
   public todosContatos : any
+  public arrayPessoa: any
+
 
   constructor(private dados : ServiceService) {
     this.todosContatos = this.dados.enviarTodosDados()
@@ -18,6 +20,7 @@ export class ContatosPage implements OnInit {
 
 
 ngOnInit() {
+  this.dados.listarTodos().then(arrayPessoa => {this.arrayPessoa = arrayPessoa} )
   }
 
 }

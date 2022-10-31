@@ -46,9 +46,9 @@ export class ContatosDetalhesPage implements OnInit {
     
     const id : number = Number(this.route.snapshot.paramMap.get('id'))
     if (id > 0){
-      this.todosContatos = this.dados.filtrodaId(id)
+      this.arrayPessoa = this.dados.filtrodaId(id)
     } else{
-      this.todosContatos = {id, nome: "", valor: 0.0}
+      this.arrayPessoa = {id, nome: "", valor: 0.0}
       this.modoEdicao = true
     }
 
@@ -62,17 +62,17 @@ export class ContatosDetalhesPage implements OnInit {
         tel: [this.pessoa.tel, Validators.compose([Validators.required, Validators.minLength(13), Validators.maxLength(16)])],
         email: [this.pessoa.email, Validators.compose([Validators.required, Validators.email])]
       })
-    
+      
   }
 
   deletar(){
-    this.dados.deletaDados(this.todosContatos)
+    this.dados.deletaDados(this.arrayPessoa)
     this.router.navigate(['/contatos/'])
   }
 
   iniciarEdicao(){
     this.modoEdicao = true
-    console.log(this.todosContatos)
+    console.log(this.arrayPessoa)
   }
   encerrarEdicao(){
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
@@ -82,7 +82,7 @@ export class ContatosDetalhesPage implements OnInit {
     
     }else{
     
-    this.dados.recebeDados(this.todosContatos)
+    this.dados.recebeDados(this.arrayPessoa)
     this.modoEdicao = false
   }
 }

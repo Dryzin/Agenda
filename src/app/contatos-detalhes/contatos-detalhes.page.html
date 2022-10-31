@@ -11,18 +11,20 @@
   </div>
 
   <ion-item *ngIf=!modoEdicao id="nome">
-  {{todosContatos.nome}}
+  {{arrayPessoa.nome}}
   </ion-item>
 
   <ion-item *ngIf=!modoEdicao>
-  Telefone: {{todosContatos.tel}}
+  Telefone: {{arrayPessoa.tel}}
   </ion-item>
 
   <ion-item *ngIf=!modoEdicao>
-    Tipo Telefone: {{todosContatos.tipo}}
+    Tipo Telefone: {{arrayPessoa.tipo}}
   </ion-item>
   
   <ion-button *ngIf="!modoEdicao" (click)="iniciarEdicao()" shape="round" fill="outline" color="dark">Alterar</ion-button>
+
+
 
 </ion-content>
 
@@ -67,8 +69,9 @@
   <small *ngIf="(pessoaForm.get('email').errors?.required || pessoaForm.get('email').errors?.email) && form.submitted" >Email invalido, Informa um email@teste </small>
 
   <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
+
+  <ion-button id="volt" shape="round" type="submit" expand="block" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
+
 </form>
 
-
-
-<ion-button shape="round" *ngIf="!modoEdicao" type="submit" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
+<ion-button *ngIf="!modoEdicao" shape="round" type="submit" expand="block" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>
