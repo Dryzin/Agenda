@@ -16,7 +16,7 @@
   </ion-list>-->
 
   <ion-list>
-    <ion-item *ngFor="let arrayPessoa of arrayPessoa" routerLink="/contatos-detalhes/{{arrayPessoa.id}}">
+    <ion-item *ngFor="let arrayPessoa of arrayPessoa" routerLink="/contatos-detalhes/{{arrayPessoa.id.value}}">
 
       <ion-avatar slot="start">
         <img src="https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png">
@@ -29,7 +29,7 @@
   </ion-list>  
 
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button color="dark" routerLink="/contatos-detalhes/-1">
+  <ion-fab-button color="dark" routerLink="/contatos-detalhes/add">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

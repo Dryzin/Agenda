@@ -20,9 +20,10 @@ export class ContatosDetalhesPage implements OnInit {
 
   private pessoa : Pessoa
   public pessoaForm : FormGroup
+  
   public arrayPessoa: any
+  //public todosContatos : any
 
-  public todosContatos : any
   public modoEdicao = false
 
   cliente = {}
@@ -30,25 +31,32 @@ export class ContatosDetalhesPage implements OnInit {
 
   constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router,private alertController: AlertController) { }
 
-  enviar() {
-    if (this.pessoaForm.invalid || this.pessoaForm.pending){
-      return
-  }
-    else{
-      this.dados.inserir(this.pessoaForm.value)
-      console.log(this.cliente)
-      this.encerrarEdicao()
-    }
-}
+//  enviar(id:string) {
+//    if (this.pessoaForm.invalid || this.pessoaForm.pending){
+//      return
+//  }
+//    else{
+//
+//      if (id = ''){
+//        this.dados.recebeDados(this.pessoaForm.value)
+//      }
+//      
+//      else{
+//        this.encerrarEdicao()
+//      }
+//      
+//    }
+//}
 
 
   ngOnInit() {
     
-    const id : number = Number(this.route.snapshot.paramMap.get('id'))
-    if (id > 0){
-      this.arrayPessoa = this.dados.filtrodaId(id)
+    const id : string = String(this.route.snapshot.paramMap.get('id'))
+
+    if (id != 'add'){
+      //this.arrayPessoa = 
+      this.dados.filtrodaId(id).then(array => this.pessoa = array)
     } else{
-      this.arrayPessoa = {id, nome: "", valor: 0.0}
       this.modoEdicao = true
     }
 
@@ -66,8 +74,11 @@ export class ContatosDetalhesPage implements OnInit {
   }
 
   deletar(){
-    this.dados.deletaDados(this.arrayPessoa)
-    this.router.navigate(['/contatos/'])
+    
+    const id : string = String (this.route.snapshot.paramMap.get('id'))
+
+    this.dados.deletaDados(id)
+    this.router.navigate(['/contatos/']).then (() => { window.location.reload()});
   }
 
   iniciarEdicao(){
@@ -75,12 +86,18 @@ export class ContatosDetalhesPage implements OnInit {
     console.log(this.arrayPessoa)
   }
   encerrarEdicao(){
-    const id: number = Number(this.route.snapshot.paramMap.get('id'))
+    const id: string = String(this.route.snapshot.paramMap.get('id'))
 
-    if (id > 0) {
-    this.modoEdicao = false
+    if (id != "add") {
+
+      if(this.pessoaForm.valid){
+
+        this.dados.AlterarContatoId(id, this.pessoaForm.value)
+        
+        this.modoEdicao = false
     
-    }else{
+    }}
+    else{
     
     this.dados.recebeDados(this.arrayPessoa)
     this.modoEdicao = false
@@ -89,10 +106,10 @@ export class ContatosDetalhesPage implements OnInit {
 
 async presentAlert() {
   const alert = await this.alertController.create({
-    header: 'Alert!',
+    header: 'Alerta!',
     buttons: [
       {
-        text: 'Cancel',
+        text: 'Cancelar',
         handler: () => {
           this.handlerMessage = 'Alert canceled';
         },

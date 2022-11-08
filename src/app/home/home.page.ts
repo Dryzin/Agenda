@@ -21,24 +21,24 @@ export class HomePage implements OnInit{
 
   ngOnInit() {
 
-      this.pessoa = {id: Guid.createEmpty(), nome:"", sobrenome:"", tel:"", email:"", tipo:""}
+ //    this.pessoa = {id: Guid.createEmpty(), nome:"", sobrenome:"", tel:"", email:"", tipo:""}
 
-      this.pessoaForm = this.formBuilder.group
+ //    this.pessoaForm = this.formBuilder.group
 
-      ({
-        id : [this.pessoa.id],
-        nome : [this.pessoa.nome, Validators.required],
-        sobrenome:[""],
-        tel:[""],
-        email:[""],
-        tipo:[""]
+ //    ({
+ //      id : [this.pessoa.id],
+ //      nome : [this.pessoa.nome, Validators.required],
+ //      sobrenome:[""],
+ //      tel:[""],
+ //      email:[""],
+ //      tipo:[""]
 
-      })
+ //    })
   }
 
-  enviar(){
-    if (this.pessoaForm.valid){
-      this.pessoaService.inserir(this.pessoaForm.value)
-    }}
+//  enviar(){
+//    if (this.pessoaForm.valid){
+//      this.pessoaService.inserir(this.pessoaForm.value)
+//    }}
 
 }

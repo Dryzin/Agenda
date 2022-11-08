@@ -19,37 +19,50 @@ export class ServiceService {
   constructor( private storage : Storage ) { }
 
   async listarTodos(){
+    
     let arrayPessoa: Pessoa [] = [];
 
-    await this.storage.forEach((value: string) =>
+    this.storage.forEach((value: string) =>
       {const pessoa: Pessoa = JSON.parse(value); arrayPessoa.push(pessoa)})
 
+      
     return arrayPessoa;
   }
 
-  inserir(argumento: Pessoa){
-
-    argumento.id = Guid.create()
-
-    this.storage.set(argumento.id.toString(), JSON.stringify(argumento))
-  }
+  //inserir(argumento: Pessoa){
+//
+  //  argumento.id = Guid.create()
+//
+  //  this.storage.set(argumento.id.toString(), JSON.stringify(argumento))
+  //}
 
   enviarTodosDados(){
-    return this.contatos_phone
+    
+    //return this.contatos_phone
   }
 
-  filtrodaId(id : number){
-    const ContatoSelecionado = this.contatos_phone.filter(contatos1 => contatos1.id === id)
-    return ContatoSelecionado[0]
+  #item3
+  async filtrodaId(id : string){
+
+    return JSON.parse(await this.storage.get(id))
+
+
+    //const ContatoSelecionado = this.contatos_phone.filter(contatos1 => contatos1.id === id)
+    //return ContatoSelecionado[0]
   }
 
-  recebeDados(dadosRecebidos : any){
-    dadosRecebidos.id = this.contatos_phone.length - 1
-    this.contatos_phone.push(dadosRecebidos)
+  recebeDados(dadosRecebidos : Pessoa){
+    dadosRecebidos.id = Guid.create()
+    this.storage.set(dadosRecebidos.id.toString(), JSON.stringify(dadosRecebidos))
   }
 
-  deletaDados(dadosRecebidos : any){
-    this.contatos_phone.splice(this.contatos_phone.indexOf(dadosRecebidos),1)
+  deletaDados(id : string){
+    this.storage.remove(id)
+  }
+
+  AlterarContatoId(id: string, dadosRecebidos: Pessoa){
+    dadosRecebidos.id = Guid.parse(id)
+    this.storage.set(dadosRecebidos.id.toString(), JSON.stringify(dadosRecebidos))
   }
 
 }
