@@ -99,7 +99,7 @@ export class ContatosDetalhesPage implements OnInit {
     }}
     else{
     
-    this.dados.recebeDados(this.arrayPessoa)
+    this.dados.recebeDados(this.pessoaForm.value)
     this.modoEdicao = false
   }
 }
