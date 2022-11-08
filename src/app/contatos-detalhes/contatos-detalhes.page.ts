@@ -31,24 +31,6 @@ export class ContatosDetalhesPage implements OnInit {
 
   constructor(private dados : ServiceService,private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router,private alertController: AlertController) { }
 
-//  enviar(id:string) {
-//    if (this.pessoaForm.invalid || this.pessoaForm.pending){
-//      return
-//  }
-//    else{
-//
-//      if (id = ''){
-//        this.dados.recebeDados(this.pessoaForm.value)
-//      }
-//      
-//      else{
-//        this.encerrarEdicao()
-//      }
-//      
-//    }
-//}
-
-
   ngOnInit() {
     
     const id : string = String(this.route.snapshot.paramMap.get('id'))
