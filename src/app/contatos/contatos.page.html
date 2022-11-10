@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contatos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let todosContatos of todosContatos" routerLink="/contatos-detalhes/{{todosContatos.id}}">
+      <ion-avatar slot="start">
+        <img src="https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png">
+      </ion-avatar>
+      <ion-label>{{todosContatos.nome}}</ion-label>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="dark" routerLink="/contatos-detalhes/-1">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-button shape="round" fill="outline" color="dark" routerLink="/home">Voltar</ion-button>

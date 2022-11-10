@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalhes Contato</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div id="img-desc">
+    <img src="https://www.freeiconspng.com/uploads/person-icon-blue-18.png">
+  </div>
+
+  <ion-item *ngIf=!modoEdicao id="nome">
+  {{todosContatos.nome}}
+  </ion-item>
+
+  <ion-item *ngIf=!modoEdicao>
+  Telefone: {{todosContatos.tel}}
+  </ion-item>
+  
+  <ion-button *ngIf="!modoEdicao" (click)="iniciarEdicao()" shape="round" fill="outline" color="dark">Alterar</ion-button>
+
+</ion-content>
+
+
+<ion-fab horizontal="end">
+  <ion-fab-button color="dark" (click)="deletar()" routerLink="/contatos">
+    <ion-icon name="trash"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
+<form *ngIf="modoEdicao" (ngSubmit)="encerrarEdicao()" id="forms">
+
+  <ion-label>Nome</ion-label>
+  <ion-input [(ngModel)]="todosContatos.nome" name="nome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+
+
+
+  <ion-label>Sobrenome</ion-label>
+  <ion-input [(ngModel)]="todosContatos.sobrenome" name="sobrenome" [newPatterns]="{ 'I': '[a-z A-Z]', 'x': '[0-9 a-z A-Z]' }" simpleMask="Ixxxxxxxxxxxxxx"></ion-input>
+
+  <ion-label>Telefone</ion-label>
+  <ion-input [(ngModel)]="todosContatos.tel" simpleMask="(99)99999-9999" name="tel"></ion-input>
+
+
+  <ion-label>Email</ion-label>
+  <ion-input [(ngModel)]="todosContatos.email" name="email"></ion-input>
+
+  <ion-button type="submit" shape="round" fill="outline" color="dark">Salvar</ion-button>
+</form>
+
+<ion-button shape="round" fill="outline" color="dark" routerLink="/contatos">Voltar</ion-button>

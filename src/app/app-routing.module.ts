@@ -12,8 +12,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+<<<<<<< HEAD
     path: 'cadastrar',
     loadChildren: () => import('./cadastrar/cadastrar.module').then( m => m.CadastrarPageModule)
+=======
+    path: 'contatos',
+    loadChildren: () => import('./contatos/contatos.module').then( m => m.ContatosPageModule)
+  },
+  {
+    path: 'contatos-detalhes/:id',
+    loadChildren: () => import('./contatos-detalhes/contatos-detalhes.module').then( m => m.ContatosDetalhesPageModule)
+>>>>>>> 7b832aa117509821d4e3e8091114d896761fe934
   },
 ];
 
