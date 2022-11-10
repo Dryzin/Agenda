@@ -1,20 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Estoque
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large" color="medium">Estoque</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button shape="round" size="full" fill="outline" color="medium" routerLink="/cadastrar"> Cadastrar </ion-button>
+    <ion-button shape="round" size="full" fill="outline" color="medium"> Entrada/Saída </ion-button>
+    <ion-button shape="round" size="full" fill="outline" color="medium"> Histórico </ion-button>
   </div>
 </ion-content>

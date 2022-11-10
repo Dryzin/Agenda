@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="produtoForm" (submit)="enviar()">
+
+    <ion-item lines="none">
+
+      <ion-label position="floating">Nome: </ion-label>
+      <ion-input formControlName="nome"></ion-input>
+
+    </ion-item>
+
+    <ion-button shape="round" size="full" fill="outline" color="medium" type="submit">Gravar</ion-button>
+    
+  </form>
+
+  <ion-item *ngFor="let arrayProduto of arrayProduto" lines="nome">
+    <ion-label>
+      {{arrayProduto.nome}}
+    </ion-label>
+  </ion-item>
+
+
+</ion-content>
+<ion-button shape="round" size="full" fill="outline" color="medium" routerLink="/home"> Voltar </ion-button>
